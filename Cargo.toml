@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 ferris-says = "0.2"
 circular-buffer = "0.1.6"
+num-traits = "0.2.18"
