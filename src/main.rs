@@ -50,6 +50,34 @@ struct Complexity
 const SINGLE: [u32;21] = [1,2,3,4,5,6,7,8,9,10, 11,12,13,14,15,16,17,18,19,20,25];
 const BOARD: [u32;20] = [20,1,18,4,13,6,10,15,2,17,3,19,7,16,8,11,14,9,12,5];
 
+use phf::{Map, phf_map};
+
+
+static map: Map<&str, &str> = phf_map! {
+  "index.html" => ("../dist/index.html"),
+  "assets/script-44b5bae5.js" => ("../dist/assets/script-44b5bae5.js"),
+  "assets/style-48a8825f.css" => ("../dist/assets/style-48a8825f.css")
+};
+
+static NEIGHBOORS: phf::Map<u32, Neighboors> = phf_map! {
+    1u32 => Neighboors(20,18),
+    2u32 => Neighboors(15,17),
+    3u32 => Neighboors(17,19),
+    4u32 => Neighboors(18,13),
+    5u32 => Neighboors(12,20),
+    6u32 => Neighboors(13,10),
+    7u32 => Neighboors(19,16),
+    8u32 => Neighboors(16,11),
+    9u32 => Neighboors(14,12),
+    10u32 => Neighboors(6,15),
+    11u32 => Neighboors(8,14),
+    12u32 => Neighboors(9,5),
+    13u32 => Neighboors(4,6),
+    14u32 => Neighboors(11,9),
+    15u32 => Neighboors(10,2),
+    16u32 => Neighboors(7,8),
+        };
+
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
 struct Checkout {
     first_dart: Dart,
@@ -71,7 +99,6 @@ impl Checkout
         { count -= 1; }
         if self.second_dart.multiplier==0
         { count -= 1; }
-        let firsti = BOARD.se
 
         let  firstleftneighboor = if first_val== *BOARD.first().unwrap() { *BOARD.last().unwrap() } else {*BOARD.get(first_val as usize-1).unwrap()};
         let  firstrightneighboor = if first_val== *BOARD.last().unwrap() { *BOARD.first().unwrap() } else {*BOARD.get(first_val as usize+1).unwrap()};
@@ -110,7 +137,6 @@ const COUNT: usize = 21;
 
 const HALFABLE: [u32;21] = create_half_able(&SINGLE);
 
-use phf::{phf_map};
 // const HALFABLEMAP: phf::Map::<usize,u32> = phf_map!{
 //     1 => 0,
 //     2 => 1,
